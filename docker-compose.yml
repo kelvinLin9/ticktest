@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  backend:
+    platform: linux/arm64/v8 # Explicitly set platform for ARM Macs
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # 將本地的 3000 端口映射到容器的 3000 端口
+    env_file:
+      - .env        # 從 .env 檔案加載環境變數 (包含 Supabase 連接字串和 Google OAuth keys)
+    volumes:
+      - .:/app
+    # 強制在容器啟動時重新安裝依賴，以確保架構正確
+    command: sh -c "rm -rf /app/node_modules && npm install && npm run build && node dist/bin/server.js"
+    restart: unless-stopped
