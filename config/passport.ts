@@ -58,7 +58,7 @@ passport.use(new GoogleStrategy({
           // 已有關聯，檢查 providerId 是否一致（理論上應該一致）
           if (existingProvider.providerId !== googleId) {
             // 這是一個異常情況，可能需要記錄或處理
-            console.warn(`Mismatched Google ID for email ${email}. DB: ${existingProvider.providerId}, Google: ${googleId}`);
+            // console.warn(`Mismatched Google ID for email ${email}. DB: ${existingProvider.providerId}, Google: ${googleId}`);
             // 可以選擇更新 providerId，或拋出錯誤，取決於業務邏輯
             existingProvider.providerId = googleId; // 暫定更新
           }

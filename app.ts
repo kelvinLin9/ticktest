@@ -25,25 +25,25 @@ const app = express();
 
 // 未捕獲的異常處理
 process.on('uncaughtException', (err) => {
-  console.error('未捕獲的異常:', err);
-  process.exit(1);
+  // console.error('未捕獲的異常:', err);
+  // process.exit(1);
 });
 
 // 未處理的 Promise 拒絕處理
 process.on('unhandledRejection', (reason, promise) => {
-  console.error('未處理的 Promise 拒絕:', promise, '原因:', reason);
+  // console.error('未處理的 Promise 拒絕:', promise, '原因:', reason);
 });
 
 connectToDatabase()
   .then(() => console.log('資料庫連接成功'))
   .catch(err => {
-    console.error('資料庫連接失敗:', err);
-    console.error('錯誤詳情:', {
-      message: err.message,
-      code: err.code,
-      syscall: err.syscall,
-      hostname: err.hostname || '未提供'
-    });
+    // console.error('資料庫連接失敗:', err);
+    // console.error('錯誤詳情:', {
+    //   message: err.message,
+    //   code: err.code,
+    //   syscall: err.syscall,
+    //   hostname: err.hostname || '未提供'
+    // });
   });
 
 // 中間件設置
@@ -64,7 +64,7 @@ app.use('/api/v1/upload', uploadRouter);
 
 // 註冊錯誤處理中間件
 app.use((err: any, req: Request, res: Response) => {
-  console.error('錯誤詳情:', err);
+  // console.error('錯誤詳情:', err);
   
   // 開發環境顯示詳細錯誤信息，生產環境顯示友好錯誤信息
   const isDev = process.env.NODE_ENV === 'development';
